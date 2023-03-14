@@ -2,6 +2,8 @@
 .exercism/
 HELP.md
 HINTS.md
+*.cabal
+stack.yaml.lock
 
 # Created by https://www.toptal.com/developers/gitignore/api/macos,ruby,node,haskell
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,ruby,node,haskell
