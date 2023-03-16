@@ -4,6 +4,7 @@ HELP.md
 HINTS.md
 *.cabal
 stack.yaml.lock
+package-lock.json
 
 # Created by https://www.toptal.com/developers/gitignore/api/macos,ruby,node,haskell
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,ruby,node,haskell
