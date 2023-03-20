@@ -7,33 +7,31 @@ To get started with TDD, see the `README.md` file in your
 =end
 
 class Clock
+  HOURS_PER_DAY = 24
+  MINUTES_PER_HOUR = 60
+  TIME_FORMAT = '%<hour>02d:%<minute>02d'.freeze
+
   attr_reader :hour, :minute
 
-  def initialize(time)
-    @hour = time[:hour] || 0
-    @minute = time[:minute] || 0
-
-    hours = (@minute.to_f / 60).floor
-    @hour += hours
-    @minute -= hours * 60
-
-    days = (@hour.to_f / 24).floor
-    @hour -= days * 24
+  def initialize(hour: 0, minute: 0)
+    @hour = (hour + minute / MINUTES_PER_HOUR) % HOURS_PER_DAY
+    @minute = minute % MINUTES_PER_HOUR
   end
 
   def to_s
-    result = ''
-    result += @hour < 10 ? "0#{@hour}" : @hour.to_s
-    result += ":#{@minute < 10 ? "0#{@minute}" : minute.to_s}"
-    result
+    format(TIME_FORMAT, hour:, minute:)
   end
 
   def -(other)
-    Clock.new(hour: hour - other.hour, minute: minute - other.minute)
+    hour = self.hour - other.hour
+    minute = self.minute - other.minute
+    Clock.new(hour:, minute:)
   end
 
   def +(other)
-    Clock.new(hour: hour + other.hour, minute: minute + other.minute)
+    hour = self.hour + other.hour
+    minute = self.minute + other.minute
+    Clock.new(hour:, minute:)
   end
 
   def ==(other)
