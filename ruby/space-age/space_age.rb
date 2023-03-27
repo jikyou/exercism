@@ -7,49 +7,25 @@ To get started with TDD, see the `README.md` file in your
 =end
 
 class SpaceAge
-  EARTH_YEARS = {
-    'mercury' => 0.2408467,
-    'venus' => 0.61519726,
-    'mars' => 1.8808158,
-    'jupiter' => 11.862615,
-    'saturn' => 29.447498,
-    'uranus' => 84.016846,
-    'neptune' => 164.79132
+  ORBITAL_PERIODS = {
+    earth: 1.0,
+    mercury: 0.2408467,
+    venus: 0.61519726,
+    mars: 1.8808158,
+    jupiter: 11.862615,
+    saturn: 29.447498,
+    uranus: 84.016846,
+    neptune: 164.79132
   }.freeze
+  SECONDS_PER_EARTH_YEAR = 60 * 60 * 24 * 365.25
 
-  def initialize(age_by_second)
-    @age_by_second = age_by_second
+  def initialize(seconds)
+    @seconds = seconds
   end
 
-  def on_earth
-    @age_by_second / 31_557_600.0
-  end
-
-  def on_mercury
-    on_earth / EARTH_YEARS['mercury']
-  end
-
-  def on_venus
-    on_earth / EARTH_YEARS['venus']
-  end
-
-  def on_mars
-    on_earth / EARTH_YEARS['mars']
-  end
-
-  def on_jupiter
-    on_earth / EARTH_YEARS['jupiter']
-  end
-
-  def on_saturn
-    on_earth / EARTH_YEARS['saturn']
-  end
-
-  def on_uranus
-    on_earth / EARTH_YEARS['uranus']
-  end
-
-  def on_neptune
-    on_earth / EARTH_YEARS['neptune']
+  ORBITAL_PERIODS.each do |planet, orbital_period|
+    define_method :"on_#{planet}" do
+      @seconds.fdiv(SECONDS_PER_EARTH_YEAR * orbital_period).round(2)
+    end
   end
 end
