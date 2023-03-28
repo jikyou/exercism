@@ -14,31 +14,20 @@ class Triangle
   end
 
   def equilateral?
-    return false unless istriangle?
-
-    sides[0] == sides[1] && sides[0] == sides[2]
+    triangle? && sides.uniq.count == 1
   end
 
   def isosceles?
-    return false unless istriangle?
-
-    sides[0] == sides[1] || sides[0] == sides[2] || sides[1] == sides[2]
+    triangle? && sides.uniq.count <= 2
   end
 
   def scalene?
-    return false unless istriangle?
-
-    sides[0] != sides[1] && sides[0] != sides[2] && sides[1] != sides[2]
+    triangle? && sides.uniq.count == 3
   end
 
   private
 
-  def istriangle?
-    return false if sides.any?(0)
-    return false if sides[0] + sides[1] < sides[2]
-    return false if sides[0] + sides[2] < sides[1]
-    return false if sides[1] + sides[2] < sides[0]
-
-    true
+  def triangle?
+    !sides.include?(0) && sides.max < sides.min(2).sum
   end
 end
