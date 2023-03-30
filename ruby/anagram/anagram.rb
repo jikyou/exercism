@@ -10,10 +10,10 @@ class Anagram
   attr_reader :word
 
   def initialize(word)
-    @word = word
+    @word = word.downcase
   end
 
   def match(words)
-    words.filter { |w| w.downcase != word.downcase && w.downcase.chars.sort == word.downcase.chars.sort }
+    words.filter { |w| w.downcase != word && w.downcase.chars.sort == word.chars.sort }
   end
 end
