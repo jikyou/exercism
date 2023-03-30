@@ -7,13 +7,22 @@ To get started with TDD, see the `README.md` file in your
 =end
 
 class Anagram
-  attr_reader :word
-
   def initialize(word)
-    @word = word.downcase
+    @source_word = word.downcase
   end
 
   def match(words)
-    words.filter { |w| w.downcase != word && w.downcase.chars.sort == word.chars.sort }
+    words.filter { |word| anagram?(word) }
+  end
+
+  private
+
+  def anagram?(word)
+    word = word.downcase
+    word != @source_word && sorted_chars(word) == sorted_chars(@source_word)
+  end
+
+  def sorted_chars(str)
+    str.chars.sort
   end
 end
