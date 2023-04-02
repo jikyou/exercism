@@ -18,6 +18,6 @@ class SumOfMultiples
       else
         (factor...limit).step(factor).to_a
       end
-    end.flatten.uniq.reduce(0, :+)
+    end.flatten.uniq.sum
   end
 end
