@@ -6,7 +6,7 @@ To get started with TDD, see the `README.md` file in your
 `ruby/sum-of-multiples` directory.
 =end
 
-class SumOfMultiples
+class SumOfMultiples1
   def initialize(*factors)
     @factors = factors
   end
@@ -19,5 +19,15 @@ class SumOfMultiples
         (factor...limit).step(factor).to_a
       end
     end.flatten.uniq.sum
+  end
+end
+
+class SumOfMultiples
+  def initialize(*factors)
+    @factors = factors
+  end
+
+  def to(limit)
+    (1...limit).select { |num| @factors.any? { |factor| (num % factor).zero? } }.sum
   end
 end
