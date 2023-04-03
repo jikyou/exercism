@@ -8,8 +8,6 @@ To get started with TDD, see the `README.md` file in your
 
 class ArmstrongNumbers  
   def self.include?(number)
-    str = number.to_s
-    len = str.size
-    number == str.chars.map { |n| n.to_i**len }.reduce(&:+)
+    number == number.digits.sum { |n| n**number.digits.size }
   end
 end
