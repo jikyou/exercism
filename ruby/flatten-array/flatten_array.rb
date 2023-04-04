@@ -8,6 +8,6 @@ To get started with TDD, see the `README.md` file in your
 
 class FlattenArray
   def self.flatten(list)
-    list.flatten.filter { |num| !num.nil? }
+    list.flatten.compact
   end
 end
