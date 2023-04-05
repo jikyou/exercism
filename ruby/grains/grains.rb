@@ -7,15 +7,17 @@ To get started with TDD, see the `README.md` file in your
 =end
 
 class Grains
+  BOARD_SIZE = 64
+
   class << self
     def square(num)
-      raise ArgumentError if num <= 0 || num > 64
+      raise ArgumentError if num <= 0 || num > BOARD_SIZE
 
       2**(num - 1)
     end
 
     def total
-      2**64 - 1
+      2**BOARD_SIZE - 1
     end
   end
 end
