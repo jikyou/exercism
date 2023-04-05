@@ -8,8 +8,7 @@ To get started with TDD, see the `README.md` file in your
 
 class PhoneNumber
   def self.clean(phone)
-    phone = phone.gsub(/\D/, '')
-    phone = phone[1..] if phone.size == 11 && phone[0].to_i == 1
+    phone = phone.gsub(/\D/, '').delete_prefix('1')
     return if phone.size != 10
     return if phone[0].to_i < 2 || phone[3].to_i < 2
 
