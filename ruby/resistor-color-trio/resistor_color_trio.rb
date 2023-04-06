@@ -19,7 +19,7 @@ class ResistorColorTrio
   def label
     v = @colors.map { |e| COLORS.index(e) }
 
-    resistor = (v.first * 10 + v[1]) * 10**v.last
+    resistor = v.first(2).join.to_i * 10**v.last
     resistor = resistor >= 1000 ? "#{resistor / 1000} kiloohms" : "#{resistor} ohms"
 
     "Resistor value: #{resistor}"
