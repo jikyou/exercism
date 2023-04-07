@@ -15,9 +15,11 @@ class Matrix
   end
 
   def saddle_points
-    @rows.each_with_index.each_with_object([]) do |(item, y), acc|
-      item.each_index do |x|
-        acc << [y, x] if item[x] == item.max && item.max == @columns[x].min
+    rows_maximum = rows.map(&:max)
+    column_minimum = @columns.map(&:min)
+    rows.each_index.each_with_object([]) do |row, acc|
+      columns.each_index do |column|
+        acc << [row, column] if rows_maximum[row] == column_minimum[column]
       end
     end
   end
