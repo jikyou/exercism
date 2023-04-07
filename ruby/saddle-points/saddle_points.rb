@@ -11,11 +11,8 @@ class Matrix
 
   def initialize(str)
     @rows = str.split("\n").map { |e| e.split.map(&:to_i) }
-    @columns = @rows.each_with_object([]) do |row, acc|
-      row.each_with_index do |item, index|
-        acc[index] = [] if acc[index].nil?
-        acc[index].push(item)
-      end
+    @columns = @rows[0].size.times.to_a.map do |i|
+      @rows.map { |row| row[i] }
     end
   end
 
