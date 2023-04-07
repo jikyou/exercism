@@ -17,7 +17,7 @@ class Matrix
   def saddle_points
     @rows.each_with_index.each_with_object([]) do |(item, y), acc|
       item.each_index do |x|
-        acc.push([y, x]) if item[x] == item.max && item.max == @columns[x].min
+        acc << [y, x] if item[x] == item.max && item.max == @columns[x].min
       end
     end
   end
