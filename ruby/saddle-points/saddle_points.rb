@@ -11,9 +11,7 @@ class Matrix
 
   def initialize(str)
     @rows = str.split("\n").map { |e| e.split.map(&:to_i) }
-    @columns = @rows[0].size.times.to_a.map do |i|
-      @rows.map { |row| row[i] }
-    end
+    @columns = @rows.transpose
   end
 
   def saddle_points
