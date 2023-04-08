@@ -8,10 +8,8 @@ To get started with TDD, see the `README.md` file in your
 
 class ETL
   def self.transform(old)
-    new_scrabble_system = {}
-    old.each do |key, value|
-      value.map(&:downcase).each { |e| new_scrabble_system[e] = key }
+    old.each_with_object({}) do |(key, value), a|
+      value.map(&:downcase).each { |e| a[e] = key }
     end
-    new_scrabble_system
   end
 end
