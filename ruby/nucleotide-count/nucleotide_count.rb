@@ -14,7 +14,7 @@ class Nucleotide
   end
 
   def self.from_dna(dna)
-    raise ArgumentError unless dna_string.count('^ACGT').zero?
+    raise ArgumentError unless dna.count('^ACGT').zero?
 
     Nucleotide.new(dna)
   end
