@@ -14,16 +14,23 @@ class Nucleotide
   end
 
   def self.from_dna(dna)
-    raise ArgumentError unless dna.chars.all? { |c| SEQS.include?(c) }
+    raise ArgumentError unless dna_string.count('^ACGT').zero?
 
     Nucleotide.new(dna)
   end
 
   def count(seq)
-    @dna.chars.filter { |c| c == seq }.count
+    @dna.count(seq)
   end
 
   def histogram
-    SEQS.each_with_object({}) { |seq, acc| acc[seq] = count(seq) }
+    nucleotide_count = {
+      'A' => 0,
+      'T' => 0,
+      'C' => 0,
+      'G' => 0
+    }
+    @dna.chars.each { |nucleotide| nucleotide_count[nucleotide] += 1 }
+    nucleotide_count
   end
 end
