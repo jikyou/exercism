@@ -8,8 +8,8 @@ To get started with TDD, see the `README.md` file in your
 
 class ETL
   def self.transform(old)
-    old.each_with_object({}) do |(key, value), a|
-      value.map(&:downcase).each { |e| a[e] = key }
+    old.each_with_object({}) do |(score, letters), a|
+      letters.map(&:downcase).each { |e| a[e] = score }
     end
   end
 end
