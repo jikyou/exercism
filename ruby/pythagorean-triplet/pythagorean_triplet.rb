@@ -9,9 +9,11 @@ To get started with TDD, see the `README.md` file in your
 class PythagoreanTriplet
   def self.triplets_with_sum(num)
     (1..num).each_with_object([]) do |a, acc|
-      (a + 1..num).each do |b|
+      remain = num - a
+      b_start = remain / 2
+      b_start.downto(a + 1) do |b|
         c = num - a - b
-        break if b >= c
+        break if a**2 + b**2 < c**2
 
         acc << [a, b, c] if a**2 + b**2 == c**2
       end
