@@ -8,7 +8,7 @@ To get started with TDD, see the `README.md` file in your
 
 class CollatzConjecture
   def self.steps(num)
-    raise ArgumentError if num <= 0
+    raise ArgumentError unless num.positive?
 
     step = 0
     until num == 1
