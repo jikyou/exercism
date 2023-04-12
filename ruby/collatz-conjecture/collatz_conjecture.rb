@@ -11,9 +11,7 @@ class CollatzConjecture
     raise ArgumentError if num <= 0
 
     step = 0
-    loop do
-      break if num == 1
-
+    until num == 1
       num = num.even? ? num / 2 : num * 3 + 1
       step += 1
     end
