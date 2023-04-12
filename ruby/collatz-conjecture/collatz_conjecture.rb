@@ -6,7 +6,7 @@ To get started with TDD, see the `README.md` file in your
 `ruby/collatz-conjecture` directory.
 =end
 
-class CollatzConjecture
+class CollatzConjecture1
   def self.steps(num)
     raise ArgumentError unless num.positive?
 
@@ -16,5 +16,17 @@ class CollatzConjecture
       step += 1
     end
     step
+  end
+end
+
+class CollatzConjecture
+  def self.steps(num)
+    raise ArgumentError, num if num < 1
+
+    enum_for(:each, num).count
+  end
+
+  def self.each(num)
+    yield num = num.even? ? num / 2 : 3 * num + 1 until num == 1
   end
 end
