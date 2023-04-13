@@ -21,7 +21,7 @@ end
 
 class CollatzConjecture
   def self.steps(num)
-    raise ArgumentError, num if num < 1
+    raise ArgumentError unless num.positive?
 
     enum_for(:each, num).count
   end
