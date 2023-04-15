@@ -12,9 +12,13 @@ class Bob
     return "Calm down, I know what I'm doing!" if question?(say) && shouting?(say)
     return 'Sure.' if question?(say)
     return 'Whoa, chill out!' if shouting?(say)
-    return 'Fine. Be that way!' if say.gsub(/\s/, '').empty?
+    return 'Fine. Be that way!' if silent?(say)
 
     'Whatever.'
+  end
+
+  def self.silent?(say)
+    say.empty?
   end
 
   def self.question?(say)
