@@ -9,15 +9,15 @@ To get started with TDD, see the `README.md` file in your
 class Bob
   def self.hey(say)
     say = say.strip
-    return "Calm down, I know what I'm doing!" if question(say) && shouting?(say)
-    return 'Sure.' if question(say)
+    return "Calm down, I know what I'm doing!" if question?(say) && shouting?(say)
+    return 'Sure.' if question?(say)
     return 'Whoa, chill out!' if shouting?(say)
     return 'Fine. Be that way!' if say.gsub(/\s/, '').empty?
 
     'Whatever.'
   end
 
-  def self.question(say)
+  def self.question?(say)
     say.end_with?('?')
   end
 
