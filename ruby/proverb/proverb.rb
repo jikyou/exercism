@@ -9,7 +9,7 @@ To get started with TDD, see the `README.md` file in your
 class Proverb
   def initialize(*words, **opt)
     @words = words
-    @qualifier = opt[:qualifier] ? "#{opt[:qualifier]} #{words[0]}" : words[0]
+    @qualifier = opt[:qualifier] ? "#{opt[:qualifier]} #{words.first}" : words.first
   end
 
   def to_s
