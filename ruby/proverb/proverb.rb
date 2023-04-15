@@ -13,10 +13,9 @@ class Proverb
   end
 
   def to_s
-    @words.each_index.map do |i|
-      next "And all for the want of a #{@qualifier}." if i == @words.size - 1
-
-      "For want of a #{@words[i]} the #{@words[i + 1]} was lost."
-    end.join("\n")
+    @words.each_cons(2)
+          .map { |lacked_item, jeopardised_item| "For want of a #{lacked_item} the #{jeopardised_item} lost." }
+          .push("And all for the want of a #{@qualifier}.")
+          .join("\n")
   end
 end
