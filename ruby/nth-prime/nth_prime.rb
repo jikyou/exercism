@@ -20,11 +20,12 @@ class Prime
     primes.last
   end
 
-  def self.prime?(num, primes)
-    primes.none? do |i|
-      return true if i > Math.sqrt(num)
+  def self.prime?(candidate, primes)
+    sqrt = Math.sqrt(candidate)
+    primes.none? do |prime|
+      return true if prime > sqrt
 
-      (num % i).zero?
+      (candidate % prime).zero?
     end
   end
 end
