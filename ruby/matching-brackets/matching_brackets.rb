@@ -7,16 +7,17 @@ To get started with TDD, see the `README.md` file in your
 =end
 
 class Brackets
+  PAIRS = {
+    ']' => '[',
+    '}' => '{',
+    ')' => '('
+  }.freeze
+
   def self.paired?(str)
     stack = []
-    pairs = {
-      ']' => '[',
-      '}' => '{',
-      ')' => '('
-    }
     str.scan(/[(){}\[\]]/).each do |i|
-      next stack << i if pairs.values.include?(i)
-      return false if stack.pop != pairs[i]
+      next stack << i if PAIRS.values.include?(i)
+      return false if stack.pop != PAIRS[i]
     end
     stack.empty?
   end
