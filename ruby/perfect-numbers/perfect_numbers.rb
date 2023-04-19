@@ -10,13 +10,7 @@ class PerfectNumber
   def self.classify(num)
     raise RuntimeError if num.negative?
 
-    aliquot_sum = (1...num).filter { |i| (num % i).zero? }.sum
-    if aliquot_sum == num
-      'perfect'
-    elsif aliquot_sum > num
-      'abundant'
-    else
-      'deficient'
-    end
+    aliquot = (1...num).filter { |i| (num % i).zero? }.sum
+    %w[perfect abundant deficient][aliquot <=> num]
   end
 end
