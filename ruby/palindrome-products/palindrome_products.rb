@@ -7,6 +7,8 @@ To get started with TDD, see the `README.md` file in your
 =end
 
 class Palindromes
+  Palindrome = Struct.new(:value, :factors)
+
   def initialize(**factors)
     @max_factor = factors.fetch(:max_factor, 0)
     @min_factor = factors.fetch(:min_factor, 0)
@@ -39,14 +41,5 @@ class Palindromes
   def palindrome?(num)
     num = num.to_s
     num == num.reverse
-  end
-
-  class Palindrome
-    attr_reader :value, :factors
-
-    def initialize(value, factors)
-      @value = value
-      @factors = factors
-    end
   end
 end
