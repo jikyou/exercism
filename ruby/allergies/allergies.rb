@@ -27,6 +27,6 @@ class Allergies
   end
 
   def list
-    ALLERGY_ITEMS.keys.filter_map { |i| i if allergic_to?(i) }
+    ALLERGY_ITEMS.keys.filter { |i| allergic_to?(i) }
   end
 end
