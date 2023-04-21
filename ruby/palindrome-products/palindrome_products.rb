@@ -17,11 +17,7 @@ class Palindromes
 
   def generate
     list = (@min_factor..@max_factor).to_a.repeated_combination(2).to_a
-    @palindromes = list.filter { |a, b| palindrome?(a * b) }.each_with_object({}) do |(a, b), acc|
-      key = a * b
-      acc[key] = [] if acc[key].nil?
-      acc[key] << [a, b]
-    end
+    @palindromes = list.filter { |a, b| palindrome?(a * b) }.group_by { |x, y| x * y }
   end
 
   def largest
