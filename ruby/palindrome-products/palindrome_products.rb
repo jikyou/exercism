@@ -7,9 +7,9 @@ To get started with TDD, see the `README.md` file in your
 =end
 
 class Palindromes
-  def initialize(**factor)
-    @max_factor = factor[:max_factor] || 0
-    @min_factor = factor[:min_factor] || 0
+  def initialize(**factors)
+    @max_factor = factors.fetch(:max_factor, 0)
+    @min_factor = factors.fetch(:min_factor, 0)
     raise ArgumentError if @min_factor > @max_factor
   end
 
