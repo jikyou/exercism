@@ -40,13 +40,13 @@ class Palindromes
     num = num.to_s
     num == num.reverse
   end
-end
 
-class Palindrome
-  attr_reader :value, :factors
+  class Palindrome
+    attr_reader :value, :factors
 
-  def initialize(value, factors)
-    @value = value
-    @factors = factors
+    def initialize(value, factors)
+      @value = value
+      @factors = factors
+    end
   end
 end
