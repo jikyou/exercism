@@ -1,5 +1,5 @@
 export function toRna(DNAStrand: string) {
-  if (DNAStrand.split("").some(r => !["C", "G", "A", "T"].includes(r))) {
+  if (/[^CGAT]/.test(DNAStrand)) {
     throw new Error("Invalid input DNA.")
   }
   return DNAStrand
