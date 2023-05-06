@@ -5,7 +5,7 @@ const DNATORNAPAIR: { [key: string]: string } = {
   "T": "A",
 }
 
-export function toRna(DNAStrand: string) {
+export function toRna(DNAStrand: string): string {
   if (new RegExp(`[^${Object.keys(DNATORNAPAIR).join("")}]`).test(DNAStrand)) {
     throw new Error("Invalid input DNA.")
   }
