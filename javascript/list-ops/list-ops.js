@@ -59,12 +59,7 @@ export class List {
   }
 
   foldr(func, initValue = 0) {
-    let acc = initValue
-    for (let i = this.values.length - 1; i >= 0; i--) {
-      const v = this.values[i];
-      acc = func(acc, v)
-    }
-    return acc
+    return this.reverse().foldl(func, initValue)
   }
 
   reverse() {
