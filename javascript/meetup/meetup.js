@@ -3,6 +3,8 @@
 // convenience to get you started writing code faster.
 //
 
+const weeks = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+
 export const meetup = (year, month, weekth, week) => {
   let date = new Date(year, month - 1, 15)
   date.setDate(getNewDay(date, weekth, week))
@@ -43,21 +45,5 @@ function getTeenthDay(day) {
 }
 
 function getDayInWeek(week) {
-  switch (week) {
-    case "Monday":
-      return 1
-    case "Tuesday":
-      return 2
-    case "Wednesday":
-      return 3
-    case "Thursday":
-      return 4
-    case "Friday":
-      return 5
-    case "Saturday":
-      return 6
-    default:
-      // Sunday
-      return 0
-  }
+  return weeks.indexOf(week)
 }
