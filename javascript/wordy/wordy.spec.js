@@ -77,29 +77,29 @@ describe('Wordy', () => {
     expect(() => answer('What is 1 plus?')).toThrow(new Error('Syntax error'));
   });
 
-  xtest('reject problem with no operands or operators', () => {
+  test('reject problem with no operands or operators', () => {
     expect(() => answer('What is?')).toThrow(new Error('Syntax error'));
   });
 
-  xtest('reject two operations in a row', () => {
+  test('reject two operations in a row', () => {
     expect(() => answer('What is 1 plus plus 2?')).toThrow(
       new Error('Syntax error')
     );
   });
 
-  xtest('reject two numbers in a row', () => {
+  test('reject two numbers in a row', () => {
     expect(() => answer('What is 1 plus 2 1?')).toThrow(
       new Error('Syntax error')
     );
   });
 
-  xtest('reject postfix notation', () => {
+  test('reject postfix notation', () => {
     expect(() => answer('What is 1 2 plus?')).toThrow(
       new Error('Syntax error')
     );
   });
 
-  xtest('reject prefix notation', () => {
+  test('reject prefix notation', () => {
     expect(() => answer('What is plus 1 2?')).toThrow(
       new Error('Syntax error')
     );

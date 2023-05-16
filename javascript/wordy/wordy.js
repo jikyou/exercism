@@ -3,6 +3,8 @@
 // convenience to get you started writing code faster.
 //
 
+const OPERATES = ["plus", "minus", "multiplied", "divided"]
+
 export const answer = (problem) => {
   const startStr = "What is"
   if (!problem.startsWith(startStr) || !problem.endsWith("?")) {
@@ -11,14 +13,20 @@ export const answer = (problem) => {
 
   problem = problem.replaceAll(/\sby/g, "")
   problem = problem.slice(startStr.length, problem.length - 1).trim()
+  if (!problem) {
+    throw new Error('Syntax error')
+  }
   let eles = problem.split(" ")
-  console.log("eles", eles);
   let result = 0
   let action
   for (let i = 0; i < eles.length; i++) {
     const ele = eles[i];
     if (i % 2 !== 0) {
-      if (!["plus", "minus", "multiplied", "divided"].includes(ele)) {
+      if (!OPERATES.includes(ele)) {
+        let num = Number(ele)
+        if (Number.isFinite(num)) {
+          throw new Error('Syntax error')
+        }
         throw new Error('Unknown operation')
       }
       if (i === eles.length - 1) {
