@@ -17,13 +17,16 @@ export const answer = (problem) => {
     throw new Error('Syntax error')
   }
   let eles = problem.split(" ")
-  let result = 0
-  let action
+  validate(eles)
+  return cal(eles)
+};
+
+function validate(eles) {
   for (let i = 0; i < eles.length; i++) {
     const ele = eles[i];
+    let num = Number(ele)
     if (i % 2 !== 0) {
       if (!OPERATES.includes(ele)) {
-        let num = Number(ele)
         if (Number.isFinite(num)) {
           throw new Error('Syntax error')
         }
@@ -32,25 +35,36 @@ export const answer = (problem) => {
       if (i === eles.length - 1) {
         throw new Error('Syntax error')
       }
-      action = ele
       continue
-    }
-    let num = Number(ele)
-    if (!action) {
-      result = num
     }
     if (!Number.isFinite(num)) {
       throw new Error('Syntax error')
     }
+    eles[i] = num
+  }
+}
+
+function cal(eles) {
+  let result = 0
+  let action
+  for (let i = 0; i < eles.length; i++) {
+    const ele = eles[i];
+    if (i % 2 !== 0) {
+      action = ele
+      continue
+    }
+    if (!action) {
+      result = ele
+    }
     if (action === "plus") {
-      result += num
+      result += ele
     } else if (action === "minus") {
-      result -= num
+      result -= ele
     } else if (action === "multiplied") {
-      result *= num
+      result *= ele
     } else if (action === "divided") {
-      result /= num
+      result /= ele
     }
   }
   return result
-};
+}
