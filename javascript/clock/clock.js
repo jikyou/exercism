@@ -12,17 +12,23 @@ export class Clock {
   }
 
   toString() {
-    let hour = Math.floor(this.#minutes / 60) % 24
-    if (hour < 0) {
-      hour += 24
-    }
+    return `${this.#format(this.#getHour())}:${this.#format(this.#getMinutes())}`
+  }
 
+  #getMinutes() {
     let minutes = this.#minutes % 60
     if (minutes < 0) {
       minutes += 60
     }
+    return minutes
+  }
 
-    return `${this.#format(hour)}:${this.#format(minutes)}`
+  #getHour() {
+    let hour = Math.floor(this.#minutes / 60) % 24
+    if (hour < 0) {
+      hour += 24
+    }
+    return hour
   }
 
   #format(num) {
