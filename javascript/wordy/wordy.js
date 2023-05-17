@@ -45,16 +45,5 @@ export const answer = (question) => {
 };
 
 function cal(a, op, b) {
-  a = Number(a)
-  b = Number(b)
-  if (op === "+") {
-    a += b
-  } else if (op === "-") {
-    a -= b
-  } else if (op === "*") {
-    a *= b
-  } else if (op === "/") {
-    a /= b
-  }
-  return a
+  return eval(`${a} ${op} ${b}`)
 }
