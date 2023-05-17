@@ -8,68 +8,53 @@ const ERR = {
   SYN: "Syntax error",
 }
 
-const OPERATES = ["plus", "minus", "multiplied", "divided"]
+const OPS = {
+  'What is': '',
+  'plus': '+',
+  'minus': '-',
+  'multiplied by': '*',
+  'divided by': '/',
+  '?': ''
+}
 
-export const answer = (problem) => {
-  const startStr = "What is"
-  if (!problem.startsWith(startStr) || !problem.endsWith("?")) {
+const notNumber = word => isNaN(Number(word));
+const isOp = word => '+-*/'.includes(word);
+const odd = (_, i) => i % 2;
+
+export const answer = (question) => {
+  if (!question.startsWith("What is") || !question.endsWith("?")) {
     throw new Error(ERR.UNK_OP)
   }
 
-  problem = problem.replaceAll(/\sby/g, "")
-  problem = problem.slice(startStr.length, problem.length - 1).trim()
-  if (!problem) {
+  let words = question.replace(/What is|plus|minus|multiplied by|divided by|\?/g, w => OPS[w])
+    .split(' ')
+    .filter(word => word)
+
+  if (!words.filter(notNumber).every(isOp)) {
+    throw new Error(ERR.UNK_OP)
+  }
+  if (words.length % 2 === 0 || !words.filter(odd).every(isOp)) {
     throw new Error(ERR.SYN)
   }
-  let eles = problem.split(" ")
-  validate(eles)
-  return cal(eles)
+
+  while (words.length > 1) {
+    words = [cal(...words.slice(0, 3))].concat(words.slice(3))
+  }
+
+  return Number(words[0])
 };
 
-function validate(eles) {
-  for (let i = 0; i < eles.length; i++) {
-    const ele = eles[i];
-    let num = Number(ele)
-    if (i % 2 !== 0) {
-      if (!OPERATES.includes(ele)) {
-        if (Number.isFinite(num)) {
-          throw new Error(ERR.SYN)
-        }
-        throw new Error(ERR.UNK_OP)
-      }
-      if (i === eles.length - 1) {
-        throw new Error('Syntax error')
-      }
-      continue
-    }
-    if (!Number.isFinite(num)) {
-      throw new Error('Syntax error')
-    }
-    eles[i] = num
+function cal(a, op, b) {
+  a = Number(a)
+  b = Number(b)
+  if (op === "+") {
+    a += b
+  } else if (op === "-") {
+    a -= b
+  } else if (op === "*") {
+    a *= b
+  } else if (op === "/") {
+    a /= b
   }
-}
-
-function cal(eles) {
-  let result = 0
-  let action
-  for (let i = 0; i < eles.length; i++) {
-    const ele = eles[i];
-    if (i % 2 !== 0) {
-      action = ele
-      continue
-    }
-    if (!action) {
-      result = ele
-    }
-    if (action === "plus") {
-      result += ele
-    } else if (action === "minus") {
-      result -= ele
-    } else if (action === "multiplied") {
-      result *= ele
-    } else if (action === "divided") {
-      result /= ele
-    }
-  }
-  return result
+  return a
 }
