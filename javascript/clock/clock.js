@@ -5,10 +5,13 @@
 
 export class Clock {
 
+  static DAY_OF_HOURS = 24
+  static HOUR_OF_MINUTES = 60
+
   #minutes
 
   constructor(hour = 0, minutes = 0) {
-    this.#minutes = hour * 60 + minutes
+    this.#minutes = hour * Clock.HOUR_OF_MINUTES + minutes
   }
 
   toString() {
@@ -16,17 +19,17 @@ export class Clock {
   }
 
   #getMinutes() {
-    let minutes = this.#minutes % 60
+    let minutes = this.#minutes % Clock.HOUR_OF_MINUTES
     if (minutes < 0) {
-      minutes += 60
+      minutes += Clock.HOUR_OF_MINUTES
     }
     return minutes
   }
 
   #getHour() {
-    let hour = Math.floor(this.#minutes / 60) % 24
+    let hour = Math.floor(this.#minutes / Clock.HOUR_OF_MINUTES) % Clock.DAY_OF_HOURS
     if (hour < 0) {
-      hour += 24
+      hour += Clock.DAY_OF_HOURS
     }
     return hour
   }
