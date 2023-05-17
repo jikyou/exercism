@@ -27,11 +27,7 @@ export class Clock {
   }
 
   #absMod(a, b) {
-    a %= b
-    if (a < 0) {
-      a += b
-    }
-    return a
+    return (b + a % b) % b
   }
 
   #format(num) {
