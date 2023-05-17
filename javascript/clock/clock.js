@@ -22,7 +22,11 @@ export class Clock {
       minutes += 60
     }
 
-    return `${String(hour).padStart(2, "0")}:${String(minutes).padStart(2, "0")}`
+    return `${this.#format(hour)}:${this.#format(minutes)}`
+  }
+
+  #format(num) {
+    return String(num).padStart(2, "0")
   }
 
   plus(minutes) {
