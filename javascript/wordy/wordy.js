@@ -3,18 +3,23 @@
 // convenience to get you started writing code faster.
 //
 
+const ERR = {
+  UNK_OP: "Unknown operation",
+  SYN: "Syntax error",
+}
+
 const OPERATES = ["plus", "minus", "multiplied", "divided"]
 
 export const answer = (problem) => {
   const startStr = "What is"
   if (!problem.startsWith(startStr) || !problem.endsWith("?")) {
-    throw new Error('Unknown operation')
+    throw new Error(ERR.UNK_OP)
   }
 
   problem = problem.replaceAll(/\sby/g, "")
   problem = problem.slice(startStr.length, problem.length - 1).trim()
   if (!problem) {
-    throw new Error('Syntax error')
+    throw new Error(ERR.SYN)
   }
   let eles = problem.split(" ")
   validate(eles)
@@ -28,9 +33,9 @@ function validate(eles) {
     if (i % 2 !== 0) {
       if (!OPERATES.includes(ele)) {
         if (Number.isFinite(num)) {
-          throw new Error('Syntax error')
+          throw new Error(ERR.SYN)
         }
-        throw new Error('Unknown operation')
+        throw new Error(ERR.UNK_OP)
       }
       if (i === eles.length - 1) {
         throw new Error('Syntax error')
