@@ -19,19 +19,19 @@ export class Clock {
   }
 
   #getMinutes() {
-    let minutes = this.#minutes % Clock.HOUR_OF_MINUTES
-    if (minutes < 0) {
-      minutes += Clock.HOUR_OF_MINUTES
-    }
-    return minutes
+    return this.#absMod(this.#minutes, Clock.HOUR_OF_MINUTES)
   }
 
   #getHour() {
-    let hour = Math.floor(this.#minutes / Clock.HOUR_OF_MINUTES) % Clock.DAY_OF_HOURS
-    if (hour < 0) {
-      hour += Clock.DAY_OF_HOURS
+    return this.#absMod(Math.floor(this.#minutes / Clock.HOUR_OF_MINUTES), Clock.DAY_OF_HOURS)
+  }
+
+  #absMod(a, b) {
+    a %= b
+    if (a < 0) {
+      a += b
     }
-    return hour
+    return a
   }
 
   #format(num) {
