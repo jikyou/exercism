@@ -35,7 +35,7 @@ class Scrabble {
     private String word;
 
     Scrabble(String word) {
-        this.word = word;
+        this.word = word.toUpperCase();
     }
 
     int getScore() {
@@ -45,7 +45,7 @@ class Scrabble {
 
         int totalScore = 0;
         for (String str : this.word.split("")) {
-            totalScore += Scrabble.LETTER_SCORE.get(str.toUpperCase());
+            totalScore += Scrabble.LETTER_SCORE.get(str);
         }
         return totalScore;
     }
