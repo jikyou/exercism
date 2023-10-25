@@ -7,8 +7,17 @@ stack.yaml.lock
 package-lock.json
 RUNNING_TESTS.md
 
-# Created by https://www.toptal.com/developers/gitignore/api/go,java,node,ruby,macos,maven,gradle,haskell
-# Edit at https://www.toptal.com/developers/gitignore?templates=go,java,node,ruby,macos,maven,gradle,haskell
+# Created by https://www.toptal.com/developers/gitignore/api/go,java,node,ruby,macos,maven,gradle,haskell,dotnetcore
+# Edit at https://www.toptal.com/developers/gitignore?templates=go,java,node,ruby,macos,maven,gradle,haskell,dotnetcore
+
+### DotnetCore ###
+# .NET Core build folders
+bin/
+obj/
+
+# Common node modules locations
+/node_modules
+/wwwroot/node_modules
 
 ### Go ###
 # If you prefer the allow list template instead of the deny list, see community template:
@@ -355,4 +364,4 @@ gradle-app.setting
 # Java heap dump
 *.hprof
 
-# End of https://www.toptal.com/developers/gitignore/api/go,java,node,ruby,macos,maven,gradle,haskell
+# End of https://www.toptal.com/developers/gitignore/api/go,java,node,ruby,macos,maven,gradle,haskell,dotnetcore
