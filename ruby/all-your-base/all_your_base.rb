@@ -7,7 +7,8 @@ To get started with TDD, see the `README.md` file in your
 =end
 class BaseConverter
   def self.convert(input_base, digits, output_base)
-    raise ArgumentError if input_base < 2 || output_base < 2 || valid_digits(input_base, digits)
+    raise ArgumentError if input_base < 2 || output_base < 2
+    raise ArgumentError if valid_digits(input_base, digits)
 
     sum = digits.reduce(0) { |s, d| s * input_base + d }
     to_digits = []
