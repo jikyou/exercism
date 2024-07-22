@@ -7,7 +7,25 @@ To get started with TDD, see the `README.md` file in your
 =end
 
 class FlattenArray
-  def self.flatten(list)
+  def self.flatten1(list)
     list.flatten.compact
   end
+
+  def self.flatten(list)
+    result = []
+    unpack(result, list)
+    result
+  end
+
+  private
+
+  def self.unpack(result, list)
+    list.each do |i|
+      next result.push(i) if i.is_a?(String)
+      next result.push(i) if i.is_a?(Numeric)
+      next if !i.is_a?(Array)
+      unpack(result, i)
+    end
+  end
+
 end
