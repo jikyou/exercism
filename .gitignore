@@ -7,6 +7,10 @@ stack.yaml.lock
 package-lock.json
 RUNNING_TESTS.md
 
+# C
+test-framework/
+tests.out.dSYM/
+
 # Created by https://www.toptal.com/developers/gitignore/api/go,java,node,ruby,macos,maven,gradle,haskell,dotnetcore,python,rust
 # Edit at https://www.toptal.com/developers/gitignore?templates=go,java,node,ruby,macos,maven,gradle,haskell,dotnetcore,python,rust
 
