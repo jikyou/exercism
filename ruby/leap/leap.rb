@@ -8,6 +8,6 @@ To get started with TDD, see the `README.md` file in your
 
 class Year
   def self.leap?(year)
-    (year % 400).zero? || (year % 4).zero? && year % 100 != 0
+    (year%4).zero? && (!(year%100).zero? || (year%400).zero?)
   end
 end
