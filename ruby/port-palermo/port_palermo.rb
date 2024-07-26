@@ -6,8 +6,7 @@ module Port
   end
 
   def self.get_terminal(ship_identifier)
-    id = ship_identifier.to_s
-    return :A if id.include?("OIL") || id.include?("GAS")
-    :B
+    cargo = ship_identifier.to_s[0, 3]
+    cargo == "OIL" || cargo == "GAS" ? :A : :B
   end
 end
