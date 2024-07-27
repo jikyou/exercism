@@ -9,7 +9,7 @@ To get started with TDD, see the `README.md` file in your
 class ListOps
 
     def self.arrays(a)
-        a.length
+        length(a)
     end
 
     def self.reverser(a)
