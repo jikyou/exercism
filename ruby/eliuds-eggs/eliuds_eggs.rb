@@ -8,14 +8,14 @@ To get started with TDD, see the `README.md` file in your
 
 class EliudsEggs
     def self.egg_count(decimal)
-        binary = []
+        eggs = 0
         q = decimal
         loop do
-            break binary << q if q <= 1
+            break eggs+=q if q <= 1
 
             q, r = q.divmod(2)
-            binary.push(r)
+            eggs+=r
         end
-        binary.count(1)
+        eggs
     end
 end
