@@ -9,23 +9,16 @@ To get started with TDD, see the `README.md` file in your
 class Darts
 
     def initialize(x, y)
-        @x = x.abs
-        @y = y.abs
+        @radius = Math.hypot(x, y)
     end
 
     def score
-        return 10 if in_circle?(1)
-        return 5 if in_circle?(5)
-        return 1 if in_circle?(10)
-
-        0
-    end
-
-    private
-
-    def in_circle?(radius)
-        r = radius*radius - @x*@x
-        (r == 0 && @y == 0) || (r > 0 && @y <= Math.sqrt(r))
+        case @radius
+        when 0..1 then 10
+        when 1..5 then 5
+        when 5..10 then 1
+        else 0
+        end
     end
 
 end
